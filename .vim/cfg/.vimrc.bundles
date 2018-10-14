@@ -1,0 +1,105 @@
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
+call vundle#begin()
+
+Bundle 'taglist.vim'
+Bundle 'a.vim'
+Bundle 'winmanager'
+"Bundle 'shougo/neocomplete.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tomasr/molokai'
+Bundle 'bufexplorer.zip'
+Bundle 'easygrep'
+Bundle 'kien/ctrlp.vim'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+Bundle 'Valloric/YouCompleteMe'
+
+call vundle#end()
+
+filetype plugin indent on
+syntax on
+
+"if filereadable(expand("~/.vim/cfg/.vimrc.neocomplete"))
+"  source ~/.vim/cfg/.vimrc.neocomplete
+"endif
+
+if filereadable(expand("~/.vim/cfg/.vimrc.nerdtree"))
+  source ~/.vim/cfg/.vimrc.nerdtree
+endif
+
+if filereadable(expand("~/.vim/cfg/.vimrc.molokai"))
+  source ~/.vim/cfg/.vimrc.molokai
+endif
+
+if filereadable(expand("~/.vim/cfg/.vimrc.winmanager"))
+  source ~/.vim/cfg/.vimrc.winmanager
+endif
+
+if filereadable(expand("~/.vim/cfg/.vimrc.nerdcommenter"))
+  source ~/.vim/cfg/.vimrc.nerdcommenter
+endif
+
+if filereadable(expand("~/.vim/cfg/.vimrc.airline"))
+  source ~/.vim/cfg/.vimrc.airline
+endif
+
+if filereadable(expand("~/.vim/cfg/.vimrc.ctrlp"))
+  source ~/.vim/cfg/.vimrc.ctrlp
+endif
+
+if filereadable(expand("~/.vim/cfg/.vimrc.youcompleteme"))
+  source ~/.vim/cfg/.vimrc.youcompleteme
+endif
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set cindent
+set nu
+set cursorline
+"set tags+=~/.vim/tags/systags
+"set tags+=~/.vim/tags/cpp
+"set tags+=~/.vim/tags/ros
+"set path+=/usr/include/c++/5.4.0
+"set path+=/usr/include/x86_64-linux-gnu/qt5/*
+"set path+=/opt/ros/kinetic/include
+set mouse=a
+set t_Co=256
+set updatetime=1000
+
+set foldmethod=syntax " 用语法高亮来定义折叠
+set foldlevel=100 " 启动vim时不要自动折叠代码
+set foldcolumn=5 " 设置折叠栏宽度
+
+"nnoremap <silent> <F9> :NERDTreeToggle<CR>
+nnoremap <silent> <F10> :WMToggle<CR>
+nnoremap <silent> <C-o> :CtrlP<CR>
+nmap <silent> <C-f> \vv
+map <silent> <C-?> \ci
+vnoremap <silent> <C-c> "+y
+
+nnoremap <C-h> :call HighlightToggle()<CR>
+function! HighlightToggle()
+  set hlsearch!
+endfunc
+
+"autocmd cursorhold * :call AutoHighlight()
+
+"function! AutoHighlight()
+"  set hlsearch
+"  normal gd
+"endfunc
+
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+nnoremap <F5> <Esc>:wa<CR>:!mkdir -p build; cd build; cmake ..; make -j32 install;<CR>
+nnoremap <C-F5> <Esc>:wa<CR>:!rm -rf build; mkdir -p build; cd build; cmake ..; make -j32 install;<CR>
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+

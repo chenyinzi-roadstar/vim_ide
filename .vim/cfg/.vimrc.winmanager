@@ -1,0 +1,19 @@
+" 设置winmanager
+" 设置界面分割
+let g:NERDTree_title='NERD Tree'
+"let g:winManagerWindowLayout='BufExplorer|TagList|FileExplorer'
+"let g:winManagerWindowLayout='BufExplorer|TagList|NERDTree'
+let g:winManagerWindowLayout='NERDTree|TagList|BufExplorer'
+
+function! NERDTree_Start()
+  exec 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+  return 1
+endfunction
+
+"设置winmanager的宽度，默认为25
+let g:winManagerWidth=40
+"在进入vim时自动打开winmanager
+let g:AutoOpenWinManager=1
